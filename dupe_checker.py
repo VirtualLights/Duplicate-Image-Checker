@@ -1,41 +1,55 @@
 import os
+import sys
 from PIL import Image
+import imagehash
+import pybktree
 #https://python-pillow.org/	
-	
+
+def hdist(x, y):
+	return pybktree.hamming_distance(x[1], y[1])
+
 def main():
 	#File path of the script
 	filepath = os.path.realpath(__file__)
 	
+	#Makes sure arguments are correct
+	if len(sys.argv) != 3:
+		raise TypeError("Invalid number of arguments.")
+	
+	#Determines which hash functions to use
+	if sys.argv[1] == 'p':
+		hash_function = imagehash.phash
+	if sys.argv[1] == 'd':
+		hash_function = imagehash.dhash
+	if sys.argv[1] == 'w':
+		hash_function = imagehash.whash
+	else:
+		raise ValueError("Invalid hash function selection, expected 'p', 'd', or 'w', recieved {}".format(sys.argv[1])
+
+	#Hamming distance to be used 
+	try:
+		if float(sys.argv[2]) >= 0:
+			distance = sys.argv[2]
+	except:
+		raise ValueError("Invalid Hamming distance value, expected positive number, recieved {}.".format(sys.argv[2])
+	
 	#Image file extensions, more can be added if necessary
 	ext = ('.jpg', '.jpeg', '.gif', '.png')
 	
-	#Dict of two tuples
-		#Key = (width, height)
-		#Value = (filename, phash)
-	checked_images = {}
-	#List of tuples of potentially duplicate images (filename1, filename2)
+	tree = pybktree.BKTree(hdist, [])
 	potential_duplicates = []
-	
 	for filename in os.listdir(filepath):
-		#Skips non-image files
 		if filename.endswith(ext):
-			#Gets the dimensions of the image
+			#Calculates the hash and adds it to the tree
 			with Image.open(filename) as img:
-				width, height = img.size
-				if (width, height) in checked_images:
-					#Checks if a hash already exists for the other file
-					if checked_images.get((width, height))[1] is None:
-						#Calculate the hash of the other image and update value
-					#Calculate the hash of the current image
-				#Calculate pHash of the two images, if they are the same, add them to the potential_duplicates list
-				else:
-				#Add the dimensions to the checked_images dict
-				#Hash is not calculated unless there is a potential duplicate image
-					checked_images[(width, height)] = (filename,None)
-		else:
-			continue
+				hash = hash_function(img)
+				tree.add(filename, hash)
+			
+				#Checks for potentially duplicate images
+				for pd in sorted(tree.find((filename, hash), dist)):
+					potential_duplicates.append((filename, pd[0]))
 			
 	print(f'Found {len(potential_duplicates)} potential duplicate images.')
 	if len(potential_duplicates) != 0:
 		for i in potential_duplicates:
-			print(i)
+			print(i)			
