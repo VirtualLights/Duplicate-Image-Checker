@@ -53,3 +53,6 @@ def main():
 	if len(potential_duplicates) != 0:
 		for i in potential_duplicates:
 			print(i)			
+			
+if __name__ == '__main__':
+	main()
