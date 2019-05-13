@@ -1,4 +1,4 @@
-# Duplicate Image Checker
+# Duplicate Image Detector
 Checks to find potentially duplicate images in a folder.
 Uses pHash, dHash, or wHash to find similar images, regardless of file format or resizing.
 Uses BK-trees to find potential matches efficiently (runtime ≈ O(nlogn)) 
