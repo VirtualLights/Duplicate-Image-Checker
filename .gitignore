@@ -1,2 +1,9 @@
 
-dogs-cats-images
+
+test/.ipynb_checkpoints
+test/*.7z
+test/*.txt
+test/ahash
+test/dhash
+test/phash
+test/whash

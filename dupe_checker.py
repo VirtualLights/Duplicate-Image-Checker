@@ -11,9 +11,9 @@ def hdist(x, y):
 
 
 def main():
-    distance = 1
-    hashFunction = imagehash.average_hash
-    #hashFunction = imagehash.dhash
+    distance = 2
+    #hashFunction = imagehash.average_hash
+    hashFunction = imagehash.dhash
     #hashFunction = imagehash.phash
     #hashFunction = imagehash.whash
 
