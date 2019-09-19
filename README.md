@@ -11,11 +11,4 @@ Uses BK-trees to find potential matches efficiently (runtime ≈ O(nlogn))
 * [pybktree](https://github.com/Jetsetter/pybktree) </li>
 
 ## Instructions:
-Place the script in the folder containing the images. Then, call the string with the following argments:
-* Argument 1:  
-	p: Uses pHash  
-	d: Uses dHash  
-	w: Uses wHash
-* Argument 2: Non-negative number (Hamming distance), 0 for exact matches, suggested values are 0-10
-
-Example: dupe_checker.py p 5.4
+Place the script in the folder containing the images. Then, call the script. Output format and hyperparameter tuning are a WIP.
