@@ -8,7 +8,7 @@ In experiments, the program is able to find all 1,002 duplicate images (out of a
 
 ## Requirements:
 
-* Python 3.0+
+* [Python 3.0+](https://www.python.org)
 * [Pillow](https://python-pillow.org/) </li>
 * [ImageHash](https://github.com/JohannesBuchner/imagehash) </li>
 * [pybktree](https://github.com/Jetsetter/pybktree) </li>
