@@ -1,7 +1,5 @@
 # Duplicate Image Detector
-Checks to find potentially duplicate images in a folder.
-Uses pHash, dHash, or wHash to find similar images, regardless of file format or resizing.
-Uses BK-trees to find potential matches efficiently (runtime ≈ O(nlogn)) 
+This program searches a directory for potentially duplicate images using perceptual hashing algorithms. In experiments, the program is able to find all 1,002 duplicate images (out of a dataset of 11,002 total images) in about 40 seconds. This efficiency is achieved through the use of BK-Trees, which allows fast hash comparison. For more information, see [here](Duplicate%20Image%20Benchmark.pdf).
 
 ## Requirements:
 
@@ -11,4 +9,4 @@ Uses BK-trees to find potential matches efficiently (runtime ≈ O(nlogn))
 * [pybktree](https://github.com/Jetsetter/pybktree) </li>
 
 ## Instructions:
-Place the script in the folder containing the images. Then, call the script. Output format and hyperparameter tuning are a WIP.
+Place the script in the folder containing the images.
